@@ -1,6 +1,6 @@
 // "Easily add sign-in to your Web app with FirebaseUI"
 // https://firebase.google.com/docs/auth/web/firebaseui?authuser=0
-
+// https://github.com/firebase/firebaseui-web
 let loggedInUser = null;
 
 // Initialize the FirebaseUI Widget using Firebase.
