@@ -2,6 +2,8 @@
   <head> </head>
   <body>
     <!-- https://firebase.google.com/docs/web/learn-more#ways-to-add-web-sdks -->
+    <!-- https://firebase.google.com/docs/web/learn-more?authuser=0#additional-setup-options -->
+    <!-- https://github.com/firebase/firebaseui-web#example-with-all-parameters-used -->
     <script
       defer
       src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"
@@ -15,8 +17,28 @@
       defer
       src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"
     ></script>
-    <script defer src="./init-firebase.js"></script>
+    <script
+      defer
+      src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"
+    ></script>
+
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css"
+    />
+
+    <script defer src="./init-1-firebase.js"></script>
+    <script defer src="./init-2-auth-ui.js"></script>
     <script defer src="./script.js"></script>
+
+    <!-- The surrounding HTML is left untouched by FirebaseUI.
+         Your app may use that space for branding, controls and other customizations.-->
+    <h1>Welcome to My Awesome App</h1>
+    <div id="firebaseui-auth-container"></div>
+    <div id="loader">Loading...</div>
+
     <h1>Firebase & Firestore simple CDN example</h1>
 
     <input type="button" value="add record" onclick="addDocButtonPressed()" />

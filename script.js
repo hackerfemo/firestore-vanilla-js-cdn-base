@@ -1,11 +1,12 @@
 function addDocButtonPressed() {
   console.log({ firebase, db });
-
+  //   const uid = loggedInUser ? loggedInUser.uid : null;
   db.collection("users")
     .add({
       first: "Ada",
       last: "Lovelace",
       favouriteNumber: Math.round(Math.random() * 10),
+      //   authorId: uid,
       born: 1815,
     })
     .then((docRef) => {
