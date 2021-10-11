@@ -1,0 +1,30 @@
+<html>
+  <head> </head>
+  <body>
+    <!-- https://firebase.google.com/docs/web/learn-more#ways-to-add-web-sdks -->
+    <script
+      defer
+      src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"
+    ></script>
+
+    <script
+      defer
+      src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"
+    ></script>
+    <script
+      defer
+      src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"
+    ></script>
+    <script defer src="./init-firebase.js"></script>
+    <script defer src="./script.js"></script>
+    <h1>Firebase & Firestore simple CDN example</h1>
+
+    <input type="button" value="add record" onclick="addDocButtonPressed()" />
+    <input
+      type="button"
+      value="read records"
+      onclick="readDocsButtonPressed()"
+    />
+    <a href="https://firebase.google.com/docs/web/alt-setup">alt-setup guide</a>
+  </body>
+</html>
