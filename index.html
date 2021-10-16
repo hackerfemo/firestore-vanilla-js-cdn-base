@@ -49,7 +49,20 @@
     <div id="firebaseui-auth-container"></div>
     <div id="loader">Loading...</div>
 
-    <input type="button" value="add record" onclick="addDocButtonPressed()" />
+    <label for="CO2">CO2 reading:</label><br>
+    <input id="CO2" type="number"><br>
+    <br>
+    <label for="peopleNum">Number of people:</label><br>
+    <input id="peopleNum" type="number"><br>
+    <br>
+    <label for="sensorPos">Sensor position:</label><br>
+    <input id="sensorPos" type="number" min="1" max="4"><br>
+    <br><input id="submit" type="button" value="Submit" onclick="submitData()"><br>
+    <br />
+
+    <!-- <input type="button" value="add record" onclick="addDocButtonPressed()" /> -->
+    
+    
     <input
       type="button"
       value="read records"
