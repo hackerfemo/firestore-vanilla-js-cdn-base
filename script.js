@@ -1,3 +1,6 @@
+// intentionally global variable - modified over the life of the web app
+let myChart;
+
 function addDocButtonPressed() {
   console.log({ firebase, db });
   //   const uid = loggedInUser ? loggedInUser.uid : null;
@@ -37,7 +40,7 @@ function addScatterChart(dataset) {
       }
     }
   };
-  var myChart = new Chart(
+  myChart = new Chart(
     document.getElementById('myChart'),
     config
   );
@@ -122,7 +125,12 @@ function readDocsButtonPressed() {
       const yValues = getReadings("numPeople", values)
       console.log(yValues)
       let scatterDataset = scatterGraphDataFormatting(values)
-      addScatterChart(scatterDataset)
+      if (myChart) {
+        myChart.data.datasets[0].data = scatterDataset
+        myChart.update();
+      } else {
+        addScatterChart(scatterDataset)
+      }
     });
 }
 
