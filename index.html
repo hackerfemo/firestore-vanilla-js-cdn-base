@@ -1,78 +1,56 @@
 <html>
-  <head>
-    <script
-      defer
-      src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"
-    ></script>
 
-    <script
-      defer
-      src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"
-    ></script>
+<head>
+  <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 
-    <script
-      defer
-      src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"
-    ></script>
+  <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
 
-    <script
-      defer
-      src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"
-    ></script>
+  <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 
-    <script
-      defer
-      src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"
-    ></script>
+  <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
 
-    <script defer src="./init-1-firebase.js"></script>
-    <script defer src="./init-2-auth-ui.js"></script>
-    <script defer src="./script.js"></script>
-  </head>
-  <body>
-    <!-- https://firebase.google.com/docs/web/learn-more#ways-to-add-web-sdks -->
-    <!-- https://firebase.google.com/docs/web/learn-more?authuser=0#additional-setup-options -->
-    <!-- https://github.com/firebase/firebaseui-web#example-with-all-parameters-used -->
-    <link
-      type="text/css"
-      rel="stylesheet"
-      href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css"
-    />
+  <script defer src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
 
-    <!-- The surrounding HTML is left untouched by FirebaseUI.
+  <script defer src="./init-1-firebase.js"></script>
+  <script defer src="./init-2-auth-ui.js"></script>
+  <script defer src="./script.js"></script>
+</head>
+
+<body>
+  <!-- https://firebase.google.com/docs/web/learn-more#ways-to-add-web-sdks -->
+  <!-- https://firebase.google.com/docs/web/learn-more?authuser=0#additional-setup-options -->
+  <!-- https://github.com/firebase/firebaseui-web#example-with-all-parameters-used -->
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+
+  <!-- The surrounding HTML is left untouched by FirebaseUI.
          Your app may use that space for branding, controls and other customizations.-->
-    <h1>Firestore simple</h1>
-    <p>
-      Example of loading and using Firebase 8.10.0 from from CDN, no modules.
-    </p>
+  <h1>Firestore simple</h1>
+  <p>
+    Example of loading and using Firebase 8.10.0 from from CDN, no modules.
+  </p>
 
-    <div id="firebaseui-auth-container"></div>
-    <div id="loader">Loading...</div>
+  <div id="firebaseui-auth-container"></div>
+  <div id="loader">Loading...</div>
 
-    <label for="CO2">CO2 reading:</label><br>
-    <input id="CO2" type="number"><br>
-    <br>
-    <label for="peopleNum">Number of people:</label><br>
-    <input id="peopleNum" type="number"><br>
-    <br>
-    <label for="sensorPos">Sensor position:</label><br>
-    <input id="sensorPos" type="number" min="1" max="4"><br>
-    <br><input id="submit" type="button" value="Submit" onclick="submitData()"><br>
-    <br />
+  <label for="CO2">CO2 reading:</label><br>
+  <input id="CO2" type="number"><br>
+  <br>
+  <label for="peopleNum">Number of people:</label><br>
+  <input id="peopleNum" type="number"><br>
+  <br>
+  <label for="sensorPos">Sensor position:</label><br>
+  <input id="sensorPos" type="number" min="1" max="4"><br>
+  <br><input id="submit" type="button" value="Submit" onclick="submitData()"><br>
+  <br />
 
-    <!-- <input type="button" value="add record" onclick="addDocButtonPressed()" /> -->
-    
-    
-    <input
-      type="button"
-      value="read records"
-      onclick="readDocsButtonPressed()"
-    />
-    <hr />
-    <div>
-      <a href="https://firebase.google.com/docs/web/alt-setup"
-        >Firebase alt-setup guide (CDNs, etc).</a
-      >
-    </div>
-  </body>
+  <!-- <input type="button" value="add record" onclick="addDocButtonPressed()" /> -->
+
+
+  <input type="button" value="read records" onclick="readDocsButtonPressed()" />
+  <hr />
+  <div>
+    <a href="https://firebase.google.com/docs/web/alt-setup">Firebase alt-setup guide (CDNs, etc).</a>
+  </div>
+</body>
+
 </html>
