@@ -127,12 +127,8 @@ function readDocsButtonPressed() {
 }
 
 function scatterGraphDataFormatting(values) {
-  let scatterDataset = []
-  values.forEach((object) => {
-    let coordinate = { x: object["CO2"], y: object["numPeople"] }
-    scatterDataset.push(coordinate)
-  });
-  return scatterDataset
+  return values.map((object) => { return { x: object["CO2"], y: object["numPeople"] } })
+  // OR return values.map((object) => ({ x: object["CO2"], y: object["numPeople"] }))
 }
 
 function getReadings(key, data) {
