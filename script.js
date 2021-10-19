@@ -17,7 +17,72 @@ function addDocButtonPressed() {
     });
 }
 
-function addChart() {
+function addScatterChart(dataset) {
+  const data = {
+    datasets: [{
+      label: 'Scatter Dataset',
+      data: dataset,
+      backgroundColor: 'rgb(255, 99, 132)'
+    }],
+  };
+  const config = {
+    type: 'scatter',
+    data: data,
+    options: {
+      scales: {
+        x: {
+          type: 'linear',
+          position: 'bottom'
+        }
+      }
+    }
+  };
+  var myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+}
+
+
+function addExampleScatterChart() {
+  const data = {
+    datasets: [{
+      label: 'Scatter Dataset',
+      data: [{
+        x: -10,
+        y: 0
+      }, {
+        x: 0,
+        y: 10
+      }, {
+        x: 10,
+        y: 5
+      }, {
+        x: 0.5,
+        y: 5.5
+      }],
+      backgroundColor: 'rgb(255, 99, 132)'
+    }],
+  };
+  const config = {
+    type: 'scatter',
+    data: data,
+    options: {
+      scales: {
+        x: {
+          type: 'linear',
+          position: 'bottom'
+        }
+      }
+    }
+  };
+  var myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+}
+
+function addExampleChart() {
   const labels = [
     'January',
     'February',
@@ -56,7 +121,18 @@ function readDocsButtonPressed() {
       console.log(xValues)
       const yValues = getReadings("numPeople", values)
       console.log(yValues)
+      let scatterDataset = scatterGraphDataFormatting(values)
+      addScatterChart(scatterDataset)
     });
+}
+
+function scatterGraphDataFormatting(values) {
+  let scatterDataset = []
+  values.forEach((object) => {
+    let coordinate = { x: object["CO2"], y: object["numPeople"] }
+    scatterDataset.push(coordinate)
+  });
+  return scatterDataset
 }
 
 function getReadings(key, data) {
