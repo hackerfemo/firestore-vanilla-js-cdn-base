@@ -1,13 +1,14 @@
 // TODO: Replace the following with your app's Firebase project configuration
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDjVkOQmWMoZerOHUXZl_AxVwK8vFIN66k",
-  authDomain: "game-jam-asset-request.firebaseapp.com",
-  projectId: "game-jam-asset-request",
-  storageBucket: "game-jam-asset-request.appspot.com",
-  messagingSenderId: "374306418440",
-  appId: "1:374306418440:web:bdb6320e1e3e395a8606bd",
+  apiKey: "AIzaSyC905dCg0RstlHBJ3xOwCXTlwox3mor9-4",
+  authDomain: "aqtate-1a921.firebaseapp.com",
+  projectId: "aqtate-1a921",
+  storageBucket: "aqtate-1a921.appspot.com",
+  messagingSenderId: "724595447989",
+  appId: "1:724595447989:web:78a9dc90a0b978cbab06fc"
 };
+
 firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore();

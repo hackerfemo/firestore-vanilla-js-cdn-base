@@ -1,0 +1,52 @@
+[
+    {
+        "id": "5ljbW0Fmvy3CiHQFrqfX",
+        "sensorPos": 1,
+        "numPeople": 23,
+        "CO2": 1234,
+        "timestamp": {
+            "seconds": 1634421211,
+            "nanoseconds": 0
+        }
+    },
+    {
+        "id": "AMSaFTJclyipt1phvDMI",
+        "CO2": 2345,
+        "numPeople": 12,
+        "sensorPos": 1,
+        "timestamp": {
+            "seconds": 1634235077,
+            "nanoseconds": 402000000
+        }
+    },
+    {
+        "id": "eGYyC2ct7M9p8GLRgi38",
+        "numPeople": 0,
+        "timestamp": {
+            "seconds": 1633977863,
+            "nanoseconds": 0
+        },
+        "sensorPos": 1,
+        "CO2": 401
+    },
+    {
+        "id": "kJMW2TNxbtuXzFPZDKCo",
+        "CO2": 723,
+        "sensorPos": 1,
+        "timestamp": {
+            "seconds": 1634418165,
+            "nanoseconds": 21000000
+        },
+        "numPeople": 3
+    },
+    {
+        "id": "ryOF0GahvBXHolXSe8Av",
+        "CO2": 345,
+        "numPeople": 0,
+        "sensorPos": 1,
+        "timestamp": {
+            "seconds": 1634418300,
+            "nanoseconds": 858000000
+        }
+    }
+]

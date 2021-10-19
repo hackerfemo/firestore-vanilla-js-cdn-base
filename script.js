@@ -21,13 +21,33 @@ function readDocsButtonPressed() {
   db.collection("CO2Readings")
     .get()
     .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        console.log(`${doc.id} => ${JSON.stringify(doc.data(), null, 2)}`);
-      });
+      let values = querySnapshotToArray(querySnapshot)
+      console.log(values)
+      const xValues = getReadings("CO2", values)
+      console.log(xValues)
+      const yValues = getReadings("numPeople", values)
+      console.log(yValues)
     });
 }
 
-function addAQReadingInformation(){
+function getReadings(key, data) {
+  let values = []
+  data.forEach((object) => {
+    values.push(object[key])
+  });
+  return values
+}
+
+function querySnapshotToArray(qs) {
+  let values = []
+  qs.forEach((doc) => {
+    // ... = spread operator - expand doc.data properties into a new object that is alongside id
+    values.push({ id: doc.id, ...doc.data() })
+  });
+  return values
+}
+
+function addAQReadingInformation() {
   let numPeopleElem = document.getElementById("peopleNum")
   let co2ReadingElem = document.getElementById("CO2")
   let sensorPosElem = document.getElementById("sensorPos")
