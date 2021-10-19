@@ -1,6 +1,7 @@
 <html>
 
 <head>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 
   <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
@@ -21,10 +22,17 @@
   <!-- https://firebase.google.com/docs/web/learn-more?authuser=0#additional-setup-options -->
   <!-- https://github.com/firebase/firebaseui-web#example-with-all-parameters-used -->
   <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+  <link type="text/css" rel="stylesheet" href="style.css" />
 
   <!-- The surrounding HTML is left untouched by FirebaseUI.
          Your app may use that space for branding, controls and other customizations.-->
   <h1>Firestore simple</h1>
+  <div>
+    <canvas id="myChart"></canvas>
+  </div>
+  <input type="button" value="show graph" onclick="addChart()" />
+  <input type="button" value="read records" onclick="readDocsButtonPressed()" />
+
   <p>
     Example of loading and using Firebase 8.10.0 from from CDN, no modules.
   </p>
@@ -44,9 +52,6 @@
   <br />
 
   <!-- <input type="button" value="add record" onclick="addDocButtonPressed()" /> -->
-
-
-  <input type="button" value="read records" onclick="readDocsButtonPressed()" />
   <hr />
   <div>
     <a href="https://firebase.google.com/docs/web/alt-setup">Firebase alt-setup guide (CDNs, etc).</a>
