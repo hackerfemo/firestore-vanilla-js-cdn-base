@@ -20,13 +20,24 @@ function addDocButtonPressed() {
     });
 }
 
-function addScatterChart(dataset) {
+function addScatterChart(datasetlist) {
   const data = {
     datasets: [{
-      label: 'Scatter Dataset',
-      data: dataset,
+      label: 'Sensor1',
+      data: datasetlist[1],
       backgroundColor: 'rgb(255, 99, 132)'
-    }],
+    },
+    {
+      label: 'Sensor2',
+      data: datasetlist[2],
+      backgroundColor: 'rgb(255, 255, 132)'
+    },
+    {
+      label: 'Sensor3',
+      data: datasetlist[3],
+      backgroundColor: 'rgb(255, 0, 255)'
+    },
+    ]
   };
   const config = {
     type: 'scatter',
@@ -120,16 +131,28 @@ function readDocsButtonPressed() {
     .then((querySnapshot) => {
       let values = querySnapshotToArray(querySnapshot)
       console.log(values)
-      const xValues = getReadings("CO2", values)
-      console.log(xValues)
-      const yValues = getReadings("numPeople", values)
-      console.log(yValues)
-      let scatterDataset = scatterGraphDataFormatting(values)
+      // const xValues = getReadings("CO2", values)
+      // console.log(xValues)
+      // const yValues = getReadings("numPeople", values)
+      // console.log(yValues)
+      datasetlist = []
+      for (let i = 0; i <= 3; i++) {
+        dataset = sepDataBySensorPos(values, i)
+        dataset = scatterGraphDataFormatting(dataset)
+        datasetlist.push(dataset)
+      }
+      console.log(datasetlist)
+      // let dataset1 = sepDataBySensorPos(values, 1)
+      // let dataset2 = sepDataBySensorPos(values, 2)
+      // let scatterDataset1 = scatterGraphDataFormatting(dataset1)
+      // let scatterDataset2 = scatterGraphDataFormatting(dataset2)
+      // console.log(scatterDataset1)
+      // console.log(scatterDataset2)
       if (myChart) {
-        myChart.data.datasets[0].data = scatterDataset
+        myChart.data.datasets[0].data = scatterDatasets
         myChart.update();
       } else {
-        addScatterChart(scatterDataset)
+        addScatterChart(datasetlist)
       }
     });
 }
@@ -137,6 +160,16 @@ function readDocsButtonPressed() {
 function scatterGraphDataFormatting(values) {
   return values.map((object) => { return { x: object["CO2"], y: object["numPeople"] } })
   // OR return values.map((object) => ({ x: object["CO2"], y: object["numPeople"] }))
+}
+
+function sepDataBySensorPos(values, sensorN) {
+  data = []
+  values.forEach((object) => {
+    if (object["sensorPos"] == sensorN) {
+      data.push(object)
+    }
+  });
+  return data
 }
 
 function getReadings(key, data) {
@@ -188,4 +221,25 @@ function submitData() {
   numPeopleElem.value = null
   co2ReadingElem.value = null
   sensorPosElem.value = null
+}
+
+function generateData(n, sn) {
+  for (let i = 0; i < n; i++) {
+    let co2 = Math.floor(Math.random() * (3000 - 300) + 300)
+    let numPeople = Math.floor(Math.random() * (30))
+    let sensorPos = sn
+    db.collection("CO2Readings")
+      .add({
+        CO2: parseInt(co2),
+        numPeople: parseInt(numPeople),
+        sensorPos: parseInt(sensorPos),
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      })
+      .then((docRef) => {
+        console.log("Document written with ID: ", docRef.id);
+      })
+      .catch((error) => {
+        console.error("Error adding document: ", error);
+      });
+  }
 }
