@@ -19,6 +19,7 @@ function addDocButtonPressed() {
 
 function readDocsButtonPressed() {
   db.collection("CO2Readings")
+    .orderBy("timestamp", "asc")
     .get()
     .then((querySnapshot) => {
       let values = querySnapshotToArray(querySnapshot)

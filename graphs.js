@@ -205,3 +205,88 @@ function addBubbleChart(datasetlist) {
         config
     );
 }
+
+function extractData(key, dataset) {
+    return dataset[0].map((object) => { return object[key] })
+}
+
+function addLineBarChart(barLineData) {
+
+    const data = {
+        labels: extractData("x", barLineData),
+        datasets: [{
+            type: 'line',
+            label: 'Bar Dataset',
+            data: extractData("y", barLineData),
+            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)'
+        }, {
+            type: 'line',
+            label: 'Line Dataset',
+            data: extractData("r", barLineData),
+            fill: false,
+            borderColor: 'rgb(54, 162, 235)'
+        }]
+    };
+    const config = {
+        type: 'scatter',
+        data: data,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                },
+                x: {
+                    type: 'time',
+                    time: {
+                        unit: 'day'
+                    },
+                    position: 'bottom'
+                }
+            }
+        }
+    };
+    myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
+}
+
+function addLineBarChartExample() {
+    const data = {
+        labels: [
+            'January',
+            'February',
+            'March',
+            'April'
+        ],
+        datasets: [{
+            type: 'bar',
+            label: 'Bar Dataset',
+            data: [10, 20, 30, 40],
+            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)'
+        }, {
+            type: 'line',
+            label: 'Line Dataset',
+            data: [50, 20, 10, 30],
+            fill: false,
+            borderColor: 'rgb(54, 162, 235)'
+        }]
+    };
+    const config = {
+        type: 'scatter',
+        data: data,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    };
+    myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
+}
