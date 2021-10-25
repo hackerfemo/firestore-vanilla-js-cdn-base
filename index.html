@@ -8,8 +8,6 @@
 
   <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 
-  <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-
   <script defer src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
 
   <script defer src="./init-1-firebase.js"></script>
@@ -17,7 +15,7 @@
   <script defer src="./script.js"></script>
 </head>
 
-<body>
+<body style="background-color: rgb(74, 156, 92)">
   <!-- https://firebase.google.com/docs/web/learn-more#ways-to-add-web-sdks -->
   <!-- https://firebase.google.com/docs/web/learn-more?authuser=0#additional-setup-options -->
   <!-- https://github.com/firebase/firebaseui-web#example-with-all-parameters-used -->
@@ -26,38 +24,38 @@
 
   <!-- The surrounding HTML is left untouched by FirebaseUI.
          Your app may use that space for branding, controls and other customizations.-->
-  <h1>Firestore simple</h1>
-  <div>
-    <canvas id="myChart"></canvas>
-  </div>
-  <input type="button" value="show example graph" onclick="addExampleScatterChart()" />
-  <input type="button" value="read records" onclick="readDocsButtonPressed()" />
+  <h1>Femi's Environmental Hack</h1>
 
-  <p>
+  <!-- <p>
     Example of loading and using Firebase 8.10.0 from from CDN, no modules.
-  </p>
+  </p> -->
 
   <div id="firebaseui-auth-container"></div>
   <div id="loader">Loading...</div>
+  <div id="dataInputForm">
+    <label for="CO2">CO2 reading:</label><br>
+    <input id="CO2" type="number"><br>
+    <br>
+    <label for="peopleNum">Number of people:</label><br>
+    <input id="peopleNum" type="number"><br>
+    <br>
+    <label for="sensorPos">Sensor position:</label><br>
+    <input id="sensorPos" type="number" min="1" max="4"><br>
+    <br><input id="submit" type="button" value="Submit" onclick="submitData()"><br>
+    <br />
+  </div>
 
-  <label for="CO2">CO2 reading:</label><br>
-  <input id="CO2" type="number"><br>
-  <br>
-  <label for="peopleNum">Number of people:</label><br>
-  <input id="peopleNum" type="number"><br>
-  <br>
-  <label for="sensorPos">Sensor position:</label><br>
-  <input id="sensorPos" type="number" min="1" max="4"><br>
-  <br><input id="submit" type="button" value="Submit" onclick="submitData()"><br>
-  <br />
-
-  <input id="randomData" type="button" value="randomData" onclick="generateData(30, 3)">
-
-  <!-- <input type="button" value="add record" onclick="addDocButtonPressed()" /> -->
-  <hr />
+  <br><br>
   <div>
     <a href="https://firebase.google.com/docs/web/alt-setup">Firebase alt-setup guide (CDNs, etc).</a>
   </div>
+  <br>
+  <input id="graphPage" type="button" value="graphPage" onclick="location.href='/graphPage.html'">
+  <hr />
+
+  <!-- <input type=" button" value="add record" onclick="addDocButtonPressed()" /> -->
+  <br>
+  <image src="/HackerfemoLogo.jpg" width="100px" height="100px">
 </body>
 
 </html>

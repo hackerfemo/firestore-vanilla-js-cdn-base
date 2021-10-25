@@ -24,18 +24,23 @@ function addScatterChart(datasetlist) {
   const data = {
     datasets: [{
       label: 'Sensor1',
-      data: datasetlist[1],
+      data: datasetlist[0],
       backgroundColor: 'rgb(255, 99, 132)'
     },
     {
       label: 'Sensor2',
-      data: datasetlist[2],
+      data: datasetlist[1],
       backgroundColor: 'rgb(255, 255, 132)'
     },
     {
       label: 'Sensor3',
-      data: datasetlist[3],
+      data: datasetlist[2],
       backgroundColor: 'rgb(255, 0, 255)'
+    },
+    {
+      label: 'Sensor4',
+      data: datasetlist[3],
+      backgroundColor: 'rgb(0, 0, 0)'
     },
     ]
   };
@@ -136,20 +141,17 @@ function readDocsButtonPressed() {
       // const yValues = getReadings("numPeople", values)
       // console.log(yValues)
       datasetlist = []
-      for (let i = 0; i <= 3; i++) {
+      for (let i = 1; i < 5; i++) {
         dataset = sepDataBySensorPos(values, i)
         dataset = scatterGraphDataFormatting(dataset)
         datasetlist.push(dataset)
       }
       console.log(datasetlist)
-      // let dataset1 = sepDataBySensorPos(values, 1)
-      // let dataset2 = sepDataBySensorPos(values, 2)
-      // let scatterDataset1 = scatterGraphDataFormatting(dataset1)
-      // let scatterDataset2 = scatterGraphDataFormatting(dataset2)
-      // console.log(scatterDataset1)
-      // console.log(scatterDataset2)
       if (myChart) {
-        myChart.data.datasets[0].data = scatterDatasets
+        myChart.data.datasets[0].data = datasetlist[0]
+        myChart.data.datasets[1].data = datasetlist[1]
+        myChart.data.datasets[2].data = datasetlist[2]
+        myChart.data.datasets[3].data = datasetlist[3]
         myChart.update();
       } else {
         addScatterChart(datasetlist)
