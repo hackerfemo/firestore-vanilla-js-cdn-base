@@ -30,7 +30,7 @@ function readDocsButtonPressed() {
       datasetlist = []
       for (let i = 1; i < 5; i++) {
         dataset = sepDataBySensorPos(values, i)
-        dataset = scatterGraphDataFormatting(dataset)
+        dataset = GraphDataFormatting(dataset)
         datasetlist.push(dataset)
       }
       console.log(datasetlist)
@@ -41,7 +41,7 @@ function readDocsButtonPressed() {
         myChart.data.datasets[3].data = datasetlist[3]
         myChart.update();
       } else {
-        addScatterChart(datasetlist)
+        addTimeLineChart(datasetlist)
       }
     });
 }
