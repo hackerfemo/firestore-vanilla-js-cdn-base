@@ -3,9 +3,11 @@
     border-radius: 5px;
   }
 h1 {
-  size: 56;
-  text-align: left;
+  font-size: 60px;
+  text-align: center;
   font-family: 'Times New Roman', serif;
+  color: white;
+  padding-top: 5%;
 }
 #dataInputForm {
   background-color: white ;
@@ -15,4 +17,13 @@ h1 {
   border-radius: 20px;
   padding-block: 10px;
   padding-inline: 10px;
+  text-align: center;
+  font-size: 30px;
+}
+hr {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+div {
+  text-align: center;
 }

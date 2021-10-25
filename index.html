@@ -25,8 +25,10 @@
          Your app may use that space for branding, controls and other customizations.-->
   <h1>Femi's Environmental Hack</h1>
 
-  <div id="firebaseui-auth-container"></div>
-  <div id="loader">Loading...</div>
+  <hr />
+
+  <!-- <div id="firebaseui-auth-container"></div>
+  <div id="loader">Loading...</div> -->
   <div id="dataInputForm">
     <label for="CO2">CO2 reading:</label><br>
     <input id="CO2" type="number"><br>
@@ -42,15 +44,13 @@
 
   <br><br>
   <div>
-    <a href="https://firebase.google.com/docs/web/alt-setup">Firebase alt-setup guide (CDNs, etc).</a>
+    <input id="graphPage" type="button" value="graphPage" onclick="location.href='/graphPage.html'">
   </div>
-  <br>
-  <input id="graphPage" type="button" value="graphPage" onclick="location.href='/graphPage.html'">
   <hr />
-
-  <!-- <input type=" button" value="add record" onclick="addDocButtonPressed()" /> -->
-  <br>
-  <image src="/HackerfemoLogo.jpg" width="100px" height="100px">
+  <div id="footer">
+    <br>
+    <image id="logo1" src="/HackerfemoLogo.jpg" width="100px" height="100px" />
+  </div>
 </body>
 
 </html>
