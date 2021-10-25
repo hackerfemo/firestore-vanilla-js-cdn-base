@@ -117,7 +117,7 @@ function generateData(n, sn) {
         CO2: parseInt(co2),
         numPeople: parseInt(numPeople),
         sensorPos: parseInt(sensorPos),
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        timestamp: firebase.firestore.Timestamp.fromMillis(generateRandomTimestamp()),
       })
       .then((docRef) => {
         console.log("Document written with ID: ", docRef.id);
@@ -126,4 +126,11 @@ function generateData(n, sn) {
         console.error("Error adding document: ", error);
       });
   }
+}
+
+function generateRandomTimestamp() {
+  //Epochs millisecond values for 25 Oct and 14 Oct - https://www.epochconverter.com/
+  let max = 1635189137000
+  let min = 1634195445000
+  return Math.random() * (max - min) + min
 }
