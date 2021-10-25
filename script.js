@@ -41,7 +41,7 @@ function readDocsButtonPressed() {
         myChart.data.datasets[3].data = datasetlist[3]
         myChart.update();
       } else {
-        addTimeLineChart(datasetlist)
+        addBubbleChart(datasetlist)
       }
     });
 }
