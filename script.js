@@ -18,7 +18,7 @@ function addDocButtonPressed() {
 }
 
 function readDocsButtonPressed() {
-  db.collection("CO2Readings")
+  db.collection("CO2LocalTest")
     .orderBy("timestamp", "asc")
     .get()
     .then((querySnapshot) => {
@@ -80,7 +80,7 @@ function addAQReadingInformation() {
   let sensorPosElem = document.getElementById("sensorPos")
   console.log({ firebase, db });
   //   const uid = loggedInUser ? loggedInUser.uid : null;
-  db.collection("CO2Readings")
+  db.collection("CO2LocalTest")
     .add({
       CO2: parseInt(co2ReadingElem.value),
       numPeople: parseInt(numPeopleElem.value),
