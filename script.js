@@ -75,37 +75,46 @@ function querySnapshotToArray(qs) {
 }
 
 function addAQReadingInformation() {
-  let numPeopleElem = document.getElementById("peopleNum")
-  let co2ReadingElem = document.getElementById("CO2")
-  let sensorPosElem = document.getElementById("sensorPos")
+  let numPeopleElems = [document.getElementById("peopleNum1"), document.getElementById("peopleNum2"), document.getElementById("peopleNum3"), document.getElementById("peopleNum4")]
+  let co2ReadingElems = [document.getElementById("CO21"), document.getElementById("CO22"), document.getElementById("CO23"), document.getElementById("CO24")]
+  let sensorPosElems = document.getElementById("sensorPos")
   console.log({ firebase, db });
   //   const uid = loggedInUser ? loggedInUser.uid : null;
-  db.collection("CO2LocalTest")
-    .add({
-      CO2: parseInt(co2ReadingElem.value),
-      numPeople: parseInt(numPeopleElem.value),
-      sensorPos: parseInt(sensorPosElem.value),
-      timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    })
-    .then((docRef) => {
-      console.log("Document written with ID: ", docRef.id);
-    })
-    .catch((error) => {
-      console.error("Error adding document: ", error);
-    });
+  for (let i = 0; i < 4; i++) {
+    console.log("hi")
+    if ((numPeopleElems[i].value == 0) || (co2ReadingElems[i].value == 0)) {
+      console.log("please fill in fully")
+      document.getElementById("errorMessage").textContent = "please fill in fully"
+      break
+    } else {
+      document.getElementById("errorMessage").textContent = ""
+    }
+    db.collection("CO2LocalTest")
+      .add({
+        CO2: parseInt(co2ReadingElems[i].value),
+        numPeople: parseInt(numPeopleElems[i].value),
+        sensorPos: parseInt(i + 1),
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      })
+      .then((docRef) => {
+        console.log("Document written with ID: ", docRef.id);
+      })
+      .catch((error) => {
+        console.error("Error adding document: ", error);
+      });
+  }
 }
 
 function submitData() {
   addAQReadingInformation()
-  let numPeopleElem = document.getElementById("peopleNum")
-  let co2ReadingElem = document.getElementById("CO2")
-  let sensorPosElem = document.getElementById("sensorPos")
-  console.log(numPeopleElem.value)
-  console.log(co2ReadingElem.value)
-  console.log(sensorPosElem.value)
-  numPeopleElem.value = null
-  co2ReadingElem.value = null
-  sensorPosElem.value = null
+  let numPeopleElems = [document.getElementById("peopleNum1"), document.getElementById("peopleNum2"), document.getElementById("peopleNum3"), document.getElementById("peopleNum4")]
+  let co2ReadingElems = [document.getElementById("CO21"), document.getElementById("CO22"), document.getElementById("CO23"), document.getElementById("CO24")]
+  numPeopleElems.forEach((element) => {
+    element.value = null
+  })
+  co2ReadingElems.forEach((element) => {
+    element.value = null
+  })
 }
 
 function generateData(n, sn) {

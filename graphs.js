@@ -45,7 +45,7 @@ function addScatterChart(datasetlist) {
 
 function GraphDataFormatting(values) {
     return values.map((object) => { return { x: object["timestamp"]["seconds"] * 1000, y: object["numPeople"], r: object["CO2"] / 100 } })
-    // OR return values.map((object) => ({ x: object["CO2"], y: object["numPeople"] }))
+    // return values.map((object) => ({ x: object["timestamp"]["seconds"], y: object["numPeople"] }))
 }
 
 function addExampleScatterChart() {
@@ -206,24 +206,24 @@ function addBubbleChart(datasetlist) {
     );
 }
 
-function extractData(key, dataset) {
-    return dataset[0].map((object) => { return object[key] })
+function extractData(key, dataset, sensorPos) {
+    return dataset[sensorPos].map((object) => { return object[key] })
 }
 
 function addLineBarChart(barLineData) {
 
     const data = {
-        labels: extractData("x", barLineData),
+        labels: extractData("x", barLineData, 0),
         datasets: [{
             type: 'line',
-            label: 'Bar Dataset',
-            data: extractData("y", barLineData),
+            label: 'numPeople',
+            data: extractData("y", barLineData, 0),
             borderColor: 'rgb(255, 99, 132)',
             backgroundColor: 'rgba(255, 99, 132, 0.2)'
         }, {
             type: 'line',
-            label: 'Line Dataset',
-            data: extractData("r", barLineData),
+            label: 'CO2',
+            data: extractData("r", barLineData, 0),
             fill: false,
             borderColor: 'rgb(54, 162, 235)'
         }]

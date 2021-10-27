@@ -30,21 +30,45 @@
   <!-- <div id="firebaseui-auth-container"></div>
   <div id="loader">Loading...</div> -->
   <div id="dataInputForm">
-    <label for="CO2">CO2 reading:</label><br>
-    <input id="CO2" type="number"><br>
+    <div id="inputBoxes">
+      <div id="sensorInput">
+        <label for="CO21">CO2 reading 1:</label><br>
+        <input id="CO21" type="number" min="400" max="3000"><br>
+        <br>
+        <label for="peopleNum1">Number of people:</label><br>
+        <input id="peopleNum1" type="number"><br>
+      </div>
+      <div id="sensorInput">
+        <label for="CO22">CO2 reading 2:</label><br>
+        <input id="CO22" type="number" min="400" max="3000"><br>
+        <br>
+        <label for="peopleNum2">Number of people:</label><br>
+        <input id="peopleNum2" type="number"><br>
+      </div>
+      <div id="sensorInput">
+        <label for="CO23">CO2 reading 3:</label><br>
+        <input id="CO23" type="number" min="400" max="3000"><br>
+        <br>
+        <label for="peopleNum3">Number of people:</label><br>
+        <input id="peopleNum3" type="number"><br>
+      </div>
+      <div id="sensorInput4">
+        <label for="CO24">CO2 reading 4:</label><br>
+        <input id="CO24" type="number" min="400" max="3000"><br>
+        <br>
+        <label for="peopleNum4">Number of people:</label><br>
+        <input id="peopleNum4" type="number"><br>
+      </div>
+    </div>
     <br>
-    <label for="peopleNum">Number of people:</label><br>
-    <input id="peopleNum" type="number"><br>
-    <br>
-    <label for="sensorPos">Sensor position:</label><br>
-    <input id="sensorPos" type="number" min="1" max="4"><br>
-    <br><input id="submit" type="button" value="Submit" onclick="submitData()"><br>
+    <p id="errorMessage"></p>
+    <input id="submit" type="button" value="Submit" onclick="submitData()"><br>
     <br />
   </div>
 
   <br><br>
   <div>
-    <input id="graphPage" type="button" value="graphPage" onclick="location.href='/graphPage.html'">
+    <input id="graphPage" type="button" value="graph page" onclick="location.href='/graphPage.html'">
   </div>
   <hr />
   <div id="footer">
