@@ -39,3 +39,12 @@ div {
   color: red;
   font-size: small;
 }
+#footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+#logo {
+  padding-inline: 20px;
+}
