@@ -67,6 +67,7 @@ function readDocsButtonPressed() {
 }
 
 function changeGraphType() {
+  datasetlist = []
   myChart.destroy();
   let graphType = document.getElementById("graphSelect").value
   for (let i = 1; i < 5; i++) {
