@@ -1,3 +1,9 @@
+let numPeopleElems = [document.getElementById("peopleNum1"), document.getElementById("peopleNum2"), document.getElementById("peopleNum3"), document.getElementById("peopleNum4")]
+let co2ReadingElems = [document.getElementById("CO21"), document.getElementById("CO22"), document.getElementById("CO23"), document.getElementById("CO24")]
+numPeopleElems.forEach((element) => {
+  element.value = 0
+})
+
 function addDocButtonPressed() {
   console.log({ firebase, db });
   //   const uid = loggedInUser ? loggedInUser.uid : null;
@@ -77,18 +83,18 @@ function querySnapshotToArray(qs) {
 function addAQReadingInformation() {
   let numPeopleElems = [document.getElementById("peopleNum1"), document.getElementById("peopleNum2"), document.getElementById("peopleNum3"), document.getElementById("peopleNum4")]
   let co2ReadingElems = [document.getElementById("CO21"), document.getElementById("CO22"), document.getElementById("CO23"), document.getElementById("CO24")]
-  let sensorPosElems = document.getElementById("sensorPos")
   console.log({ firebase, db });
   //   const uid = loggedInUser ? loggedInUser.uid : null;
   for (let i = 0; i < 4; i++) {
-    console.log("hi")
-    if ((numPeopleElems[i].value == 0) || (co2ReadingElems[i].value == 0)) {
+    if (co2ReadingElems[i].value == 0) {
       console.log("please fill in fully")
       document.getElementById("errorMessage").textContent = "please fill in fully"
-      break
+      return
     } else {
       document.getElementById("errorMessage").textContent = ""
     }
+  }
+  for (let i = 0; i < 4; i++) {
     db.collection("CO2LocalTest")
       .add({
         CO2: parseInt(co2ReadingElems[i].value),
@@ -110,7 +116,7 @@ function submitData() {
   let numPeopleElems = [document.getElementById("peopleNum1"), document.getElementById("peopleNum2"), document.getElementById("peopleNum3"), document.getElementById("peopleNum4")]
   let co2ReadingElems = [document.getElementById("CO21"), document.getElementById("CO22"), document.getElementById("CO23"), document.getElementById("CO24")]
   numPeopleElems.forEach((element) => {
-    element.value = null
+    element.value = 0
   })
   co2ReadingElems.forEach((element) => {
     element.value = null
