@@ -43,9 +43,13 @@ function addScatterChart(datasetlist) {
     );
 }
 
-function GraphDataFormatting(values) {
+function bubbleGraphDataF(values) {
     return values.map((object) => { return { x: object["timestamp"]["seconds"] * 1000, y: object["numPeople"], r: object["CO2"] / 100 } })
     // return values.map((object) => ({ x: object["timestamp"]["seconds"], y: object["numPeople"] }))
+}
+
+function LineChartDataF(values, key) {
+    return values.map((object) => { return { x: object["timestamp"]["seconds"] * 1000, y: object[key] } })
 }
 
 function addExampleScatterChart() {

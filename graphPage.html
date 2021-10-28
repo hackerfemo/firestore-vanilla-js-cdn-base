@@ -30,8 +30,17 @@
         <canvas id="myChart"></canvas>
     </div>
     <br><br>
-
     <input type="button" value="show graph" onclick="readDocsButtonPressed()" />
+    <br>
+    <br>
+
+    <label for="graphSelect">Choose a graph type:</label>
+    <select name="graphSelect" id="graphSelect">
+        <option value="bubble">Bubble Graph</option>
+        <option value="CO2Line">CO2 Line Graph</option>
+        <option value="numPeopleLine">numPeople Line Graph</option>
+    </select>
+    <input type="button" value="change graph" onclick="changeGraphType()" />
 
     <div id="firebaseui-auth-container"></div>
     <div id="loader">Loading...</div>

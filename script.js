@@ -28,16 +28,23 @@ function readDocsButtonPressed() {
     .orderBy("timestamp", "asc")
     .get()
     .then((querySnapshot) => {
-      let values = querySnapshotToArray(querySnapshot)
+      values = querySnapshotToArray(querySnapshot)
       console.log(values)
       // const xValues = getReadings("CO2", values)
       // console.log(xValues)
       // const yValues = getReadings("numPeople", values)
       // console.log(yValues)
       datasetlist = []
+      let graphType = document.getElementById("graphSelect").value
       for (let i = 1; i < 5; i++) {
         dataset = sepDataBySensorPos(values, i)
-        dataset = GraphDataFormatting(dataset)
+        if (graphType == "bubble") {
+          dataset = bubbleGraphDataF(dataset)
+        } else if (graphType == "CO2Line") {
+          dataset = LineChartDataF(dataset, "CO2")
+        } else if (graphType == "numPeopleLine") {
+          dataset = LineChartDataF(dataset, "numPeople")
+        }
         datasetlist.push(dataset)
       }
       console.log(datasetlist)
@@ -48,9 +55,38 @@ function readDocsButtonPressed() {
         myChart.data.datasets[3].data = datasetlist[3]
         myChart.update();
       } else {
-        addBubbleChart(datasetlist)
+        if (graphType == "bubble") {
+          addBubbleChart(datasetlist)
+        } else if (graphType == "CO2Line") {
+          addTimeLineChart(datasetlist)
+        } else if (graphType == "numPeopleLine") {
+          addTimeLineChart(datasetlist)
+        }
       }
     });
+}
+
+function changeGraphType() {
+  myChart.destroy();
+  let graphType = document.getElementById("graphSelect").value
+  for (let i = 1; i < 5; i++) {
+    dataset = sepDataBySensorPos(values, i)
+    if (graphType == "bubble") {
+      dataset = bubbleGraphDataF(dataset)
+    } else if (graphType == "CO2Line") {
+      dataset = LineChartDataF(dataset, "CO2")
+    } else if (graphType == "numPeopleLine") {
+      dataset = LineChartDataF(dataset, "numPeople")
+    }
+    datasetlist.push(dataset)
+  }
+  if (graphType == "bubble") {
+    addBubbleChart(datasetlist)
+  } else if (graphType == "CO2Line") {
+    addTimeLineChart(datasetlist)
+  } else if (graphType == "numPeopleLine") {
+    addTimeLineChart(datasetlist)
+  }
 }
 
 function sepDataBySensorPos(values, sensorN) {
@@ -87,7 +123,6 @@ function addAQReadingInformation() {
   //   const uid = loggedInUser ? loggedInUser.uid : null;
   for (let i = 0; i < 4; i++) {
     if (co2ReadingElems[i].value == 0) {
-      console.log("please fill in fully")
       document.getElementById("errorMessage").textContent = "please fill in fully"
       return
     } else {
