@@ -1,46 +1,8 @@
 // intentionally global variable - modified over the life of the web app
 let myChart;
 
-function addScatterChart(datasetlist) {
-    const data = {
-        datasets: [{
-            label: 'Sensor1',
-            data: datasetlist[0],
-            backgroundColor: 'rgb(255, 99, 132)'
-        },
-        {
-            label: 'Sensor2',
-            data: datasetlist[1],
-            backgroundColor: 'rgb(255, 255, 132)'
-        },
-        {
-            label: 'Sensor3',
-            data: datasetlist[2],
-            backgroundColor: 'rgb(255, 0, 255)'
-        },
-        {
-            label: 'Sensor4',
-            data: datasetlist[3],
-            backgroundColor: 'rgb(0, 0, 0)'
-        },
-        ]
-    };
-    const config = {
-        type: 'scatter',
-        data: data,
-        options: {
-            scales: {
-                x: {
-                    type: 'linear',
-                    position: 'bottom'
-                }
-            }
-        }
-    };
-    myChart = new Chart(
-        document.getElementById('myChart'),
-        config
-    );
+function extractData(key, dataset, sensorPos) {
+    return dataset[sensorPos].map((object) => { return object[key] })
 }
 
 function bubbleGraphDataF(values) {
@@ -48,98 +10,59 @@ function bubbleGraphDataF(values) {
     // return values.map((object) => ({ x: object["timestamp"]["seconds"], y: object["numPeople"] }))
 }
 
+function scatterGraphDataF(values) {
+    console.log("scatterGraphDataF")
+    return values.map((object) => { return { x: object["numPeople"], y: object["CO2"] } })
+    // return values.map((object) => ({ x: object["timestamp"]["seconds"], y: object["numPeople"] }))
+}
+
 function LineChartDataF(values, key) {
     return values.map((object) => { return { x: object["timestamp"]["seconds"] * 1000, y: object[key] } })
-}
-
-function addExampleScatterChart() {
-    const data = {
-        datasets: [{
-            label: 'Scatter Dataset',
-            data: [{
-                x: -10,
-                y: 0
-            }, {
-                x: 0,
-                y: 10
-            }, {
-                x: 10,
-                y: 5
-            }, {
-                x: 0.5,
-                y: 5.5
-            }],
-            backgroundColor: 'rgb(255, 99, 132)'
-        }],
-    };
-    const config = {
-        type: 'scatter',
-        data: data,
-        options: {
-            scales: {
-                x: {
-                    type: 'linear',
-                    position: 'bottom'
-                }
-            }
-        }
-    };
-    var myChart = new Chart(
-        document.getElementById('myChart'),
-        config
-    );
-}
-
-function addExampleChart() {
-    const labels = [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-    ];
-    const data = {
-        labels: labels,
-        datasets: [{
-            label: 'My First dataset',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [0, 10, 5, 2, 20, 30, 45],
-        }]
-    };
-    const config = {
-        type: 'line',
-        data: data,
-        options: {}
-    };
-    var myChart = new Chart(
-        document.getElementById('myChart'),
-        config
-    );
 }
 
 function addTimeLineChart(datasetlist) {
     const data = {
         datasets: [{
-            label: 'Sensor1',
+            label: 'Sensor 1',
             data: datasetlist[0],
-            backgroundColor: 'rgb(255, 99, 132)'
+            backgroundColor: "#D55E00",
+            borderColor: "#D55E00",
+            borderWidth: 1
         },
         {
-            label: 'Sensor2',
+            label: 'Sensor 2',
             data: datasetlist[1],
-            backgroundColor: 'rgb(255, 255, 132)'
+            backgroundColor: "#E69F00",
+            borderColor: "#E69F00",
+            borderWidth: 1
         },
         {
-            label: 'Sensor3',
+            label: 'Sensor 3',
             data: datasetlist[2],
-            backgroundColor: 'rgb(255, 0, 255)'
+            backgroundColor: "#56B4E9",
+            borderColor: "#56B4E9",
+            borderWidth: 1
         },
         {
-            label: 'Sensor4',
+            label: 'Sensor 4',
             data: datasetlist[3],
-            backgroundColor: 'rgb(0, 0, 0)'
+            backgroundColor: "#009E73",
+            borderColor: "#009E73",
+            borderWidth: 1
+        },
+        {
+            label: 'Sensor 5',
+            data: datasetlist[4],
+            backgroundColor: "#0072B2",
+            borderColor: "#0072B2",
+            borderWidth: 1
+        },
+        {
+            label: 'Sensor 6',
+            data: datasetlist[5],
+            backgroundColor: "#CC79A7",
+            borderColor: "#CC79A7",
+            borderWidth: 1
         },
         ]
     };
@@ -168,24 +91,46 @@ function addBubbleChart(datasetlist) {
     // requires r: object["CO2"] / 100 added to map in formatting
     const data = {
         datasets: [{
-            label: 'Sensor1',
+            label: 'Sensor 1',
             data: datasetlist[0],
-            backgroundColor: 'rgb(255, 99, 132)'
+            backgroundColor: "#D55E00",
+            borderColor: "#D55E00",
+            borderWidth: 1
         },
         {
-            label: 'Sensor2',
+            label: 'Sensor 2',
             data: datasetlist[1],
-            backgroundColor: 'rgb(255, 255, 132)'
+            backgroundColor: "#E69F00",
+            borderColor: "#E69F00",
+            borderWidth: 1
         },
         {
-            label: 'Sensor3',
+            label: 'Sensor 3',
             data: datasetlist[2],
-            backgroundColor: 'rgb(255, 0, 255)'
+            backgroundColor: "#56B4E9",
+            borderColor: "#56B4E9",
+            borderWidth: 1
         },
         {
-            label: 'Sensor4',
+            label: 'Sensor 4',
             data: datasetlist[3],
-            backgroundColor: 'rgb(0, 0, 0)'
+            backgroundColor: "#009E73",
+            borderColor: "#009E73",
+            borderWidth: 1
+        },
+        {
+            label: 'Sensor 5',
+            data: datasetlist[4],
+            backgroundColor: "#0072B2",
+            borderColor: "#0072B2",
+            borderWidth: 1
+        },
+        {
+            label: 'Sensor 6',
+            data: datasetlist[5],
+            backgroundColor: "#CC79A7",
+            borderColor: "#CC79A7",
+            borderWidth: 1
         },
         ]
     };
@@ -210,11 +155,7 @@ function addBubbleChart(datasetlist) {
     );
 }
 
-function extractData(key, dataset, sensorPos) {
-    return dataset[sensorPos].map((object) => { return object[key] })
-}
-
-function addLineBarChart(barLineData) {
+function addDoubleLineChart(barLineData) {
 
     const data = {
         labels: extractData("x", barLineData, 0),
@@ -222,14 +163,56 @@ function addLineBarChart(barLineData) {
             type: 'line',
             label: 'numPeople',
             data: extractData("y", barLineData, 0),
-            borderColor: 'rgb(255, 99, 132)',
-            backgroundColor: 'rgba(255, 99, 132, 0.2)'
+            backgroundColor: "#000000",
+            borderColor: "#000000",
+            borderWidth: 1
         }, {
             type: 'line',
-            label: 'CO2',
+            label: 'Sensor 1',
             data: extractData("r", barLineData, 0),
-            fill: false,
-            borderColor: 'rgb(54, 162, 235)'
+            backgroundColor: "#D55E00",
+            borderColor: "#D55E00",
+            borderWidth: 1
+        },
+        {
+            type: 'line',
+            label: 'Sensor 2',
+            data: extractData("r", barLineData, 1),
+            backgroundColor: "#E69F00",
+            borderColor: "#E69F00",
+            borderWidth: 1
+        },
+        {
+            type: 'line',
+            label: 'Sensor 3',
+            data: extractData("r", barLineData, 2),
+            backgroundColor: "#56B4E9",
+            borderColor: "#56B4E9",
+            borderWidth: 1
+        },
+        {
+            type: 'line',
+            label: 'Sensor 4',
+            data: extractData("r", barLineData, 3),
+            backgroundColor: "#009E73",
+            borderColor: "#009E73",
+            borderWidth: 1
+        },
+        {
+            type: 'line',
+            label: 'Sensor 5',
+            data: extractData("r", barLineData, 4),
+            backgroundColor: "#0072B2",
+            borderColor: "#0072B2",
+            borderWidth: 1
+        },
+        {
+            type: 'line',
+            label: 'Sensor 6',
+            data: extractData("r", barLineData, 5),
+            backgroundColor: "#CC79A7",
+            borderColor: "#CC79A7",
+            borderWidth: 1
         }]
     };
     const config = {
@@ -256,35 +239,62 @@ function addLineBarChart(barLineData) {
     );
 }
 
-function addLineBarChartExample() {
+function addScatterChart(datasetlist) {
+    console.log("scatter")
+    console.log(datasetlist)
     const data = {
-        labels: [
-            'January',
-            'February',
-            'March',
-            'April'
-        ],
         datasets: [{
-            type: 'bar',
-            label: 'Bar Dataset',
-            data: [10, 20, 30, 40],
-            borderColor: 'rgb(255, 99, 132)',
-            backgroundColor: 'rgba(255, 99, 132, 0.2)'
-        }, {
-            type: 'line',
-            label: 'Line Dataset',
-            data: [50, 20, 10, 30],
-            fill: false,
-            borderColor: 'rgb(54, 162, 235)'
-        }]
+            label: 'Sensor 1',
+            data: datasetlist[0],
+            backgroundColor: "#D55E00",
+            borderColor: "#D55E00",
+            borderWidth: 1
+        },
+        {
+            label: 'Sensor 2',
+            data: datasetlist[1],
+            backgroundColor: "#E69F00",
+            borderColor: "#E69F00",
+            borderWidth: 1
+        },
+        {
+            label: 'Sensor 3',
+            data: datasetlist[2],
+            backgroundColor: "#56B4E9",
+            borderColor: "#56B4E9",
+            borderWidth: 1
+        },
+        {
+            label: 'Sensor 4',
+            data: datasetlist[3],
+            backgroundColor: "#009E73",
+            borderColor: "#009E73",
+            borderWidth: 1
+        },
+        {
+            label: 'Sensor 5',
+            data: datasetlist[4],
+            backgroundColor: "#0072B2",
+            borderColor: "#0072B2",
+            borderWidth: 1
+        },
+        {
+            label: 'Sensor 6',
+            data: datasetlist[5],
+            backgroundColor: "#CC79A7",
+            borderColor: "#CC79A7",
+            borderWidth: 1
+        },
+        ]
     };
     const config = {
         type: 'scatter',
         data: data,
         options: {
             scales: {
-                y: {
-                    beginAtZero: true
+                x: {
+                    type: 'linear',
+                    position: 'bottom'
                 }
             }
         }
