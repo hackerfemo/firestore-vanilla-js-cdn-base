@@ -38,12 +38,14 @@ function readDocsButtonPressed() {
       let graphType = document.getElementById("graphSelect").value
       for (let i = 1; i < 5; i++) {
         dataset = sepDataBySensorPos(values, i)
-        if (graphType == "bubble") {
+        if ((graphType == "bubble") || (graphType == "doubleLineGraph")) {
           dataset = bubbleGraphDataF(dataset)
         } else if (graphType == "CO2Line") {
           dataset = LineChartDataF(dataset, "CO2")
         } else if (graphType == "numPeopleLine") {
           dataset = LineChartDataF(dataset, "numPeople")
+        } else if (graphType == "scatter") {
+          dataset = scatterGraphDataF(dataset)
         }
         datasetlist.push(dataset)
       }
@@ -61,6 +63,10 @@ function readDocsButtonPressed() {
           addTimeLineChart(datasetlist)
         } else if (graphType == "numPeopleLine") {
           addTimeLineChart(datasetlist)
+        } else if (graphType == "scatter") {
+          addScatterChart(datasetlist)
+        } else if (graphType == "doubleLineGraph") {
+          addDoubleLineChart(datasetlist)
         }
       }
     });
@@ -72,12 +78,14 @@ function changeGraphType() {
   let graphType = document.getElementById("graphSelect").value
   for (let i = 1; i < 5; i++) {
     dataset = sepDataBySensorPos(values, i)
-    if (graphType == "bubble") {
+    if ((graphType == "bubble") || (graphType == "doubleLineGraph")) {
       dataset = bubbleGraphDataF(dataset)
     } else if (graphType == "CO2Line") {
       dataset = LineChartDataF(dataset, "CO2")
     } else if (graphType == "numPeopleLine") {
       dataset = LineChartDataF(dataset, "numPeople")
+    } else if (graphType == "scatter") {
+      dataset = scatterGraphDataF(dataset)
     }
     datasetlist.push(dataset)
   }
@@ -87,6 +95,10 @@ function changeGraphType() {
     addTimeLineChart(datasetlist)
   } else if (graphType == "numPeopleLine") {
     addTimeLineChart(datasetlist)
+  } else if (graphType == "scatter") {
+    addScatterChart(datasetlist)
+  } else if (graphType == "doubleLineGraph") {
+    addDoubleLineChart(datasetlist)
   }
 }
 
@@ -118,11 +130,11 @@ function querySnapshotToArray(qs) {
 }
 
 function addAQReadingInformation() {
-  let numPeopleElems = [document.getElementById("peopleNum1"), document.getElementById("peopleNum2"), document.getElementById("peopleNum3"), document.getElementById("peopleNum4")]
-  let co2ReadingElems = [document.getElementById("CO21"), document.getElementById("CO22"), document.getElementById("CO23"), document.getElementById("CO24")]
+  let numPeopleElem = document.getElementById("numPeople")
+  let co2ReadingElems = [document.getElementById("CO21"), document.getElementById("CO22"), document.getElementById("CO23"), document.getElementById("CO24"), document.getElementById("CO25"), document.getElementById("CO26")]
   console.log({ firebase, db });
   //   const uid = loggedInUser ? loggedInUser.uid : null;
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 6; i++) {
     if (co2ReadingElems[i].value == 0) {
       document.getElementById("errorMessage").textContent = "please fill in fully"
       return
@@ -130,11 +142,11 @@ function addAQReadingInformation() {
       document.getElementById("errorMessage").textContent = ""
     }
   }
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 6; i++) {
     db.collection("CO2LocalTest")
       .add({
         CO2: parseInt(co2ReadingElems[i].value),
-        numPeople: parseInt(numPeopleElems[i].value),
+        numPeople: parseInt(numPeopleElem.value),
         sensorPos: parseInt(i + 1),
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
       })
