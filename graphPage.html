@@ -20,43 +20,38 @@
     <!-- https://firebase.google.com/docs/web/learn-more#ways-to-add-web-sdks -->
     <!-- https://firebase.google.com/docs/web/learn-more?authuser=0#additional-setup-options -->
     <!-- https://github.com/firebase/firebaseui-web#example-with-all-parameters-used -->
-    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+
     <link type="text/css" rel="stylesheet" href="style.css" />
 
-    <!-- The surrounding HTML is left untouched by FirebaseUI.
-         Your app may use that space for branding, controls and other customizations.-->
     <h1>Femi's Environmental Hack</h1>
-    <div>
-        <canvas id="myChart"></canvas>
+    <div id="graphScreen">
+        <div>
+            <canvas id="myChart"></canvas>
+        </div>
+        <br>
+        <div>
+            <input type="button" value="show graph" onclick="readDocsButtonPressed()" />
+        </div>
+        <br>
+        <div>
+            <label for="graphSelect">Choose a graph type:</label>
+            <select name="graphSelect" id="graphSelect">
+                <option value="bubble">Bubble Graph</option>
+                <option value="CO2Line">CO2 Line Graph</option>
+                <option value="numPeopleLine">numPeople Line Graph</option>
+                <option value="scatter">Scatter Graph</option>
+                <option value="doubleLineGraph">Double Line Graph</option>
+            </select>
+            <input type="button" value="change graph" onclick="changeGraphType()" />
+        </div>
+        <br>
     </div>
     <br><br>
-    <input type="button" value="show graph" onclick="readDocsButtonPressed()" />
+    <div>
+        <input id="homePage" type="button" value="homePage" onclick="location.href='/index.html'">
+    </div>
     <br>
-    <br>
-
-    <label for="graphSelect">Choose a graph type:</label>
-    <select name="graphSelect" id="graphSelect">
-        <option value="bubble">Bubble Graph</option>
-        <option value="CO2Line">CO2 Line Graph</option>
-        <option value="numPeopleLine">numPeople Line Graph</option>
-    </select>
-    <input type="button" value="change graph" onclick="changeGraphType()" />
-
-    <div id="firebaseui-auth-container"></div>
-    <div id="loader">Loading...</div>
-
-    <br>
-    <input id="randomData" type="button" value="random data" onclick="generateData(30, 3)">
-    <br><br>
-
     <hr />
-
-    <div>
-        <a href="https://firebase.google.com/docs/web/alt-setup">Firebase alt-setup guide (CDNs, etc).</a>
-    </div>
-    <br>
-    <input id="homePage" type="button" value="homePage" onclick="location.href='/index.html'">
-
     <div id="footer">
         <br>
         <div>
@@ -64,9 +59,6 @@
         </div>
         <div>
             <image id="logo" src="/HackerfemoLogo.jpg" width="100px" height="100px" />
-        </div>
-        <div>
-            <image id="logo" src="/uniqloLogo.png" width="100px" height="100px" />
         </div>
     </div>
 </body>
